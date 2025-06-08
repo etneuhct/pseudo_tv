@@ -1,0 +1,21 @@
+{
+    "channel": {
+        "name": "Ma Chaine"
+    },
+    "playlist_groups": [
+        {
+            "name": "PG1",
+            "playlists": [
+                {
+                    "name": "PL1",
+                    "items": [
+                        "Hannibal",
+                        "South park",
+                        "Hannibal",
+                        "Simpson"
+                    ]
+                }
+            ]
+        }
+    ]
+}
