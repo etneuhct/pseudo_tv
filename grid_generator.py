@@ -1,16 +1,18 @@
 import json
 import os
-import pprint
 import random
 from collections import defaultdict
+from datetime import timedelta, datetime
 
+import jinja2
 import requests
 from dotenv import load_dotenv
 
-from data_types import Show, CategoryCriteria, Criteria, SlotFormat, ChannelBlock, Channel
+from data_types import Show, CategoryCriteria, Criteria, SlotFormat, ChannelBlock, Channel, Catalog
 from utils import deserialize_enum_keys
 
 load_dotenv()
+DATA_DIR = "data"
 
 
 class ShowSelector:
@@ -52,8 +54,6 @@ class ShowSelector:
             props = set(show_properties.get(category, []))
             if criteria['category'] == CategoryCriteria.DURATION:
                 if all([i is not None for i in props]):
-                    if "totoro" in show['name'].lower():
-                        print(min(values) < min(props) and max(props) < max(values), props, values)
                     return min(values) < min(props) and max(props) < max(values)
             else:
                 return any(props.intersection(set(values)))
@@ -94,7 +94,7 @@ class ChannelMaker:
         selected_slot_formats = self.multiple_random_selection(self.available_slot_formats, 2)
         selected_slot_counts = self.multiple_random_selection(self.slot_count_options, 2)
         self.channel["available_slot_count"] = selected_slot_counts
-        self.channel["available_slow_format"] = selected_slot_formats
+        self.channel["available_slot_format"] = selected_slot_formats
         self.channel['begin'] = self.channel_begin_at
         self.channel["end"] = self.channel_end_at
 
@@ -120,13 +120,13 @@ class ChannelMaker:
         block: ChannelBlock = dict()
         block['begin'] = begin
 
-        selected_slow_format: SlotFormat = random.choice(self.channel['available_slow_format']) if not force_minimum \
-            else min(self.channel['available_slow_format'], key=lambda s: s["slot_duration"])
+        selected_slot_format: SlotFormat = random.choice(self.channel['available_slot_format']) if not force_minimum \
+            else min(self.channel['available_slot_format'], key=lambda s: s["slot_duration"])
 
         selected_slot_count = random.choice(self.channel['available_slot_count']) if not force_minimum else min(
             self.channel['available_slot_count'])
 
-        block_duration = self.minute_to_float_hour(selected_slow_format["slot_duration"] * selected_slot_count)
+        block_duration = self.minute_to_float_hour(selected_slot_format["slot_duration"] * selected_slot_count)
         end_date = block['begin'] + block_duration
         normalized_end_date = self.normalize_hour_to_day(end_date)
 
@@ -134,8 +134,8 @@ class ChannelMaker:
             return None
         block['end'] = end_date  # normalized_end_date
         block['slot_count'] = selected_slot_count
-        block['slow_format'] = selected_slow_format
-        block['criteria'] = self.select_block_criteria(selected_slow_format)
+        block['slot_format'] = selected_slot_format
+        block['criteria'] = self.select_block_criteria(selected_slot_format)
         return block
 
     def select_block_criteria(self, slot_duration: SlotFormat) -> list[Criteria]:
@@ -185,11 +185,10 @@ class JellyfinShowRetriever:
         }
         self.user_id = self.get_user_id_from_username()
 
-        self.data_dir = "data"
-        self.show_file_path = os.path.join(self.data_dir, "shows.json")
+        self.show_file_path = os.path.join(DATA_DIR, "shows.json")
 
-    def get_shows(self, limit=100) -> list[Show]:
-        if os.path.exists(self.show_file_path):
+    def get_shows(self, limit=100, reload=False) -> list[Show]:
+        if os.path.exists(self.show_file_path) and not reload:
             return self.load_shows()
         show_list = self._get_shows(limit)
         self.save_shows(show_list)
@@ -307,17 +306,101 @@ class ShowAnalyzer:
         return properties
 
 
+class GridGenerator:
+    def __init__(self):
+        self.catalog_dir_path = os.path.join(DATA_DIR, "catalogs")
+
+    def generate_catalog(self, catalog_name, catalog_template="random", channel_count=1):
+
+        show_retriever = JellyfinShowRetriever(
+            os.getenv("JELLYFIN_URL"),
+            os.getenv("JELLYFIN_API_KEY"),
+            os.getenv("JELLYFIN_USERNAME")
+        )
+        shows_list = show_retriever.get_shows(1000)
+
+        catalog = self.get_or_create_catalog(catalog_name)
+
+        channels: list[Channel] = catalog['channels']
+
+        if catalog['step'] < 1:
+            if catalog_template == "random":
+                for i in range(channel_count):
+                    created_channel = self.generate_random_channel(shows_list)
+                    channels.append(created_channel)
+            catalog['step'] = 1
+            catalog['channels'] = channels
+            self.save_catalog(catalog)
+
+        if catalog['step'] < 2:
+            for channel in channels:
+                if "name" not in channel:
+                    channel['name'] = self.generate_channel_name(channel)
+                show_selector = ShowSelector(channel=channel, show_list=shows_list)
+                show_selector.generate_schedules()
+            catalog['step'] = 2
+            self.save_catalog(catalog)
+        return catalog
+        # for channel  in channels:
+        #     exist = False
+        #     for block in channel['blocks']:
+        #         if len(block['shows']):
+        #             exist = True
+        #             break
+        #     if exist:
+        #         print(channel)
+        #         print("ok")
+
+    def get_or_create_catalog(self, catalog_name: str) -> Catalog:
+        if os.path.exists(self.get_catalog_json(catalog_name)):
+            with open(self.get_catalog_json(catalog_name), "r", encoding="utf-8") as f:
+                loaded_data = json.load(f)
+            catalog = deserialize_enum_keys(loaded_data)
+        else:
+            catalog: Catalog = {'name': catalog_name, 'step': 0, 'channels': []}
+        return catalog
+
+    @staticmethod
+    def generate_random_channel(shows_list: list[Show]) -> Channel:
+        available_props = ShowAnalyzer(shows_list).get_available_properties()
+        print(available_props[CategoryCriteria.GENRE])
+        channel_maker = ChannelMaker(available_properties=available_props)
+        channel_maker.make_channel_frame()
+        created_channel = channel_maker.channel
+        return created_channel
+
+    def get_catalog_json(self, catalog_name: str) -> str:
+        return os.path.join(self.catalog_dir_path, f"{catalog_name}.json")
+
+    def generate_channel_name(self, channel) -> str:
+        return ""
+
+    def save_catalog(self, catalog: Catalog):
+        with open(self.get_catalog_json(catalog['name']), "w", encoding="utf-8", ) as f:
+            json.dump(catalog, f, indent=4, ensure_ascii=False)
+
+
+class PlayoutGenerator:
+
+    def __init__(self, channel: Channel):
+        self.channel = channel
+
+    def generate_playout(self):
+        template_file = os.path.join(DATA_DIR, "playout_template.txt")
+        env = jinja2.Environment(loader=jinja2.FileSystemLoader('.'))
+        env.globals['hour_float_to_hour_minute'] = hour_float_to_hour_minute
+
+        template = env.get_template(template_file)
+        output = template.render(channel=self.channel)
+        # with open('playout_output.yaml', 'w') as f:
+        #     f.write(output)
+        print(output)
+
+def hour_float_to_hour_minute(hour):
+    base = datetime.strptime("00:00", "%H:%M")
+    result = base + timedelta(hours=hour)
+    return result.strftime("%I:%M %p")
+
 if __name__ == '__main__':
-    b = JellyfinShowRetriever(
-        os.getenv("JELLYFIN_URL"),
-        os.getenv("JELLYFIN_API_KEY"),
-        os.getenv("JELLYFIN_USERNAME")
-    )
-    shows_l = b.get_shows(1000)
-    available_props = ShowAnalyzer(shows_l).get_available_properties()
-    channel_maker = ChannelMaker(available_properties=available_props)
-    channel_maker.make_channel_frame()
-    created_channel = channel_maker.channel
-    show_selector = ShowSelector(channel=created_channel, show_list=shows_l)
-    show_selector.generate_schedules()
-    pprint.pprint(show_selector.channel)
+    cat =    GridGenerator().generate_catalog("test", channel_count=10)
+    PlayoutGenerator(cat['channels'][0]).generate_playout()

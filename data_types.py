@@ -33,18 +33,22 @@ class ChannelBlock(TypedDict):
     shows: list[Show]
     # slot_duration: int
     slot_count: int
-    slow_format: SlotFormat
+    slot_format: SlotFormat
 
 
 class Channel(TypedDict):
     name: str
-    description: str
+    description: str # totalement inutile pour l'instant, mais qui sait...
     blocks: list[ChannelBlock]
 
     # permet d'automatiser la generation aleatoire des blocks
     available_properties: dict[CategoryCriteria, list[str | int | float]]
-    # available_slot_durations: list[int]
-    available_slow_format: list[SlotFormat]
+    available_slot_format: list[SlotFormat]
     available_slot_count: list[int]
     begin: int
     end: int
+
+class Catalog(TypedDict):
+    name: str
+    step: int
+    channels: list[Channel]
