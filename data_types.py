@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import TypedDict
+from typing import TypedDict, Optional
 
 
 class SlotFormat(TypedDict):
@@ -19,7 +19,7 @@ class CategoryCriteria(str, Enum):
 class Criteria(TypedDict):
     category: CategoryCriteria
     values: list[str | int | float]
-
+    forbidden: bool
 
 class Show(TypedDict):
     name: str
@@ -40,7 +40,8 @@ class Channel(TypedDict):
     name: str
     description: str # totalement inutile pour l'instant, mais qui sait...
     blocks: list[ChannelBlock]
-
+    fillers: list[str] # pas utilisé lors de la génération aléatoire pour l'instant
+    logo: Optional[str]
     # permet d'automatiser la generation aleatoire des blocks
     available_properties: dict[CategoryCriteria, list[str | int | float]]
     available_slot_format: list[SlotFormat]
@@ -52,3 +53,10 @@ class Catalog(TypedDict):
     name: str
     step: int
     channels: list[Channel]
+
+
+class CatalogGenerationStep:
+    init = 0
+    generation = 1
+    config = 2
+    super_category = 1

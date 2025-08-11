@@ -1,18 +1,27 @@
 import json
 import os
 import random
+import time
 from collections import defaultdict
 from datetime import timedelta, datetime
 
 import jinja2
 import requests
-from dotenv import load_dotenv
+from playwright.sync_api import sync_playwright
 
-from data_types import Show, CategoryCriteria, Criteria, SlotFormat, ChannelBlock, Channel, Catalog
+import settings
+from data_types import Show, CategoryCriteria, Criteria, SlotFormat, ChannelBlock, Channel, Catalog, \
+    CatalogGenerationStep
 from utils import deserialize_enum_keys
 
-load_dotenv()
+random.seed(666)
 DATA_DIR = "data"
+PLAYOUT_DIR = "output"
+ERSATZTV_PLAYOUT_DIR = "/root/.local/share/playout"
+
+SUPER_CATEGORIES = {
+    "Anime": ["item1", "item3"]
+}
 
 
 class ShowSelector:
@@ -24,7 +33,16 @@ class ShowSelector:
 
     def generate_schedules(self):
         for block in self.channel['blocks']:
-            matching_shows = self.get_matching_shows(self.show_list, block['criteria'])
+            slot = block['slot_format']
+            all_criteria: list[Criteria] = [
+                {
+                    "category": CategoryCriteria.DURATION,
+                    "values": [slot['show_min_duration'], slot['show_max_duration']],
+                    "forbidden": False
+                },
+                *block['criteria']
+            ]
+            matching_shows = self.get_matching_shows(self.show_list, criteria=all_criteria)
             block['shows'] = matching_shows
         self.curate_channel(self.channel)
 
@@ -50,13 +68,17 @@ class ShowSelector:
         values = criteria['values']
         category = criteria['category']
         show_properties = show.get('properties', {})
+        forbidden = criteria.get('forbidden', False)
+
         if len(values) > 0:
             props = set(show_properties.get(category, []))
             if criteria['category'] == CategoryCriteria.DURATION:
                 if all([i is not None for i in props]):
-                    return min(values) < min(props) and max(props) < max(values)
+                    match = min(values) < min(props) and max(props) < max(values)
+                    return match if not forbidden else not match
             else:
-                return any(props.intersection(set(values)))
+                match = any(props.intersection(set(values)))
+                return match if not forbidden else not match
         return False
 
 
@@ -309,13 +331,16 @@ class ShowAnalyzer:
 class GridGenerator:
     def __init__(self):
         self.catalog_dir_path = os.path.join(DATA_DIR, "catalogs")
+        self.catalog_templates_dir_path = os.path.join(DATA_DIR, "catalog_templates")
+        os.makedirs(self.catalog_dir_path, exist_ok=True)
+        os.makedirs(self.catalog_templates_dir_path, exist_ok=True)
 
     def generate_catalog(self, catalog_name, catalog_template="random", channel_count=1):
 
         show_retriever = JellyfinShowRetriever(
-            os.getenv("JELLYFIN_URL"),
-            os.getenv("JELLYFIN_API_KEY"),
-            os.getenv("JELLYFIN_USERNAME")
+            settings.JELLYFIN_URL,
+            settings.JELLYFIN_API_KEY,
+            settings.JELLYFIN_USERNAME
         )
         shows_list = show_retriever.get_shows(1000)
 
@@ -323,37 +348,53 @@ class GridGenerator:
 
         channels: list[Channel] = catalog['channels']
 
-        if catalog['step'] < 1:
+        if catalog['step'] < CatalogGenerationStep.generation:
             if catalog_template == "random":
                 for i in range(channel_count):
                     created_channel = self.generate_random_channel(shows_list)
                     channels.append(created_channel)
-            catalog['step'] = 1
+            else:
+                catalog = self.get_or_create_catalog(catalog_name=catalog_template, is_template=True)
+                catalog['name'] = catalog_name
+                channels = catalog['channels']
+
+            catalog['step'] = CatalogGenerationStep.generation
             catalog['channels'] = channels
             self.save_catalog(catalog)
 
-        if catalog['step'] < 2:
+        for channel in catalog['channels']:
+            channel['fillers'] = self.replace_super_categories(channel['fillers'])
+            for block in channel['blocks']:
+                for criteria in block['criteria']:
+                    if criteria['category'] == CategoryCriteria.GENRE:
+                        criteria['values'] = self.replace_super_categories(criteria['values'])
+
+        self.save_catalog(catalog)
+
+        if catalog['step'] < CatalogGenerationStep.config:
             for channel in channels:
                 if "name" not in channel:
                     channel['name'] = self.generate_channel_name(channel)
                 show_selector = ShowSelector(channel=channel, show_list=shows_list)
                 show_selector.generate_schedules()
-            catalog['step'] = 2
+            catalog['step'] = CatalogGenerationStep.config
+            catalog['step'] = 0
             self.save_catalog(catalog)
         return catalog
-        # for channel  in channels:
-        #     exist = False
-        #     for block in channel['blocks']:
-        #         if len(block['shows']):
-        #             exist = True
-        #             break
-        #     if exist:
-        #         print(channel)
-        #         print("ok")
 
-    def get_or_create_catalog(self, catalog_name: str) -> Catalog:
-        if os.path.exists(self.get_catalog_json(catalog_name)):
-            with open(self.get_catalog_json(catalog_name), "r", encoding="utf-8") as f:
+    @staticmethod
+    def replace_super_categories(categories: list[str]) -> list[str]:
+        result = set()
+        for category in categories:
+            if category in SUPER_CATEGORIES.keys():
+                result = result.union(SUPER_CATEGORIES[category])
+            else:
+                result.add(category)
+        return list(result)
+
+    def get_or_create_catalog(self, catalog_name: str, is_template=False) -> Catalog:
+        if os.path.exists(self.get_catalog_json(catalog_name, is_template=is_template)):
+            with open(self.get_catalog_json(catalog_name, is_template=is_template), "r", encoding="utf-8") as f:
                 loaded_data = json.load(f)
             catalog = deserialize_enum_keys(loaded_data)
         else:
@@ -363,14 +404,15 @@ class GridGenerator:
     @staticmethod
     def generate_random_channel(shows_list: list[Show]) -> Channel:
         available_props = ShowAnalyzer(shows_list).get_available_properties()
-        print(available_props[CategoryCriteria.GENRE])
+
         channel_maker = ChannelMaker(available_properties=available_props)
         channel_maker.make_channel_frame()
         created_channel = channel_maker.channel
         return created_channel
 
-    def get_catalog_json(self, catalog_name: str) -> str:
-        return os.path.join(self.catalog_dir_path, f"{catalog_name}.json")
+    def get_catalog_json(self, catalog_name: str, is_template=False) -> str:
+        directory = self.catalog_templates_dir_path if is_template else self.catalog_dir_path
+        return os.path.join(directory, f"{catalog_name}.json")
 
     def generate_channel_name(self, channel) -> str:
         return ""
@@ -389,18 +431,74 @@ class PlayoutGenerator:
         template_file = os.path.join(DATA_DIR, "playout_template.txt")
         env = jinja2.Environment(loader=jinja2.FileSystemLoader('.'))
         env.globals['hour_float_to_hour_minute'] = hour_float_to_hour_minute
-
         template = env.get_template(template_file)
         output = template.render(channel=self.channel)
-        # with open('playout_output.yaml', 'w') as f:
-        #     f.write(output)
-        print(output)
+        file_path = os.path.join(PLAYOUT_DIR, f'{self.channel["name"]}.yaml')
+        with open(file_path, 'w') as f:
+            f.write(output)
+
+
+class ErsatzTvApi:
+
+    def __init__(self):
+        self.url = settings.ERSATZ_URL
+
+    def configura_channel(self, channel: Channel):
+        self.create_channel(channel)
+        self.create_yml_playout(channel)
+
+    def create_channel(self, channel: Channel):
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True)
+            context = browser.new_context()
+            page = context.new_page()
+            page.goto(f"{self.url}/channels/add")
+            page.get_by_role("group").filter(has_text="Name").get_by_role("textbox").fill(channel['name'])
+            time.sleep(1)
+            if "logo" in channel:
+                logo_file_path = os.path.join(DATA_DIR, "logo", channel['logo'])
+                if os.path.exists(logo_file_path):
+                    page.set_input_files("#fileInput", logo_file_path)
+                    time.sleep(2)
+            page.get_by_role("button", name="Add Channel").click()
+            time.sleep(5)
+
+    def create_yml_playout(self, channel: Channel):
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True)
+            context = browser.new_context()
+            page = context.new_page()
+            page.goto(f"{self.url}/playouts/add/yaml")
+            page.get_by_text("Channel Disabled channels").click()
+            page.get_by_text(f"- {channel['name']}").click()
+            yml_path = os.path.join(ERSATZTV_PLAYOUT_DIR, f"{channel['name']}.yaml")
+            page.get_by_role("group").filter(has_text="YAML File").locator("input").first.fill(yml_path)
+            time.sleep(1)
+            page.get_by_role("button", name="Add YAML Playout").click()
+            time.sleep(3)
+
 
 def hour_float_to_hour_minute(hour):
     base = datetime.strptime("00:00", "%H:%M")
     result = base + timedelta(hours=hour)
     return result.strftime("%I:%M %p")
 
+
+def ensure_base_directories():
+    os.makedirs(DATA_DIR, exist_ok=True)
+    os.makedirs(PLAYOUT_DIR, exist_ok=True)
+
+
 if __name__ == '__main__':
-    cat =    GridGenerator().generate_catalog("test", channel_count=10)
-    PlayoutGenerator(cat['channels'][0]).generate_playout()
+    print("starting")
+    ensure_base_directories()
+    cat = GridGenerator().generate_catalog("c1", catalog_template="demo3")
+    for c in cat['channels']:
+        print(c['name'], "begin")
+        PlayoutGenerator(c).generate_playout()
+        try:
+            ErsatzTvApi().configura_channel(c)
+        except Exception as e:
+            print(str(e))
+            break
+        print(c['name'], "ok")
