@@ -1,0 +1,53 @@
+TÂCHE
+Tu es chargé de générer un catalogue de chaînes TV sous forme d’un tableau JSON de dictionnaires. Chaque entrée représente UNE chaîne et doit contenir EXCLUSIVEMENT les clés suivantes:
+- name (string) : un nom de chaîne lisible, mémorisable, qui sonne “TV” (ex : Primea, Agora, Mosaik, Crime+, SerieOne, Drama+, NovaX, Comedia, ActionMax, Emotia, Nocturna, FamilyCiné, Artemis, TerraDoc, Chronos, Eureka, Cartoonia, ToonX, MiniPop, AniVerse, QuizArena, Gusto, CasaDesign, Voyage!).
+- description (string) : une description EXHAUSTIVE de la ligne éditoriale incluant :
+  • genres dominants (choisis dans la liste de genres normalisés ci-dessous),
+  • types autorisés (uniquement: series, movie),
+  • formats/durées autorisés (prends dans la table des formats ci-dessous),
+  • éventuelles exclusions (ex. pas d’animation, pas d’horreur, etc.),
+  • un rappel bref de la promesse de programmation (journée/prime/late si utile).
+- begin (number, float) : heure de début de diffusion au format décimal (ex. 6.0 = 06:00).
+- end (number, float) : heure de fin (ex. 24.0 = 24:00).
+
+CONTRAINTES GLOBALES
+1) SORTIE = UNIQUEMENT le tableau JSON (pas de texte autour, pas de commentaires, pas de Markdown).
+2) Taille: 18 à 24 chaînes couvrant tous les publics hors “musique / actualité / sport”.
+3) Interdictions globales du catalogue: PAS de chaînes d’actualité en continu, PAS de chaînes de musique, PAS de chaînes de sport.
+4) Diversité éditoriale: inclure généralistes, fictions (policier/thriller, drama, comédie, SF/fantasy), cinéma (action, émotion, frisson, famille), docs/culture (nature/sciences/histoire/arts), lifestyle (cuisine, maison, voyage), jeunesse/animation (kids, préscolaire, anime ado/adulte).
+5) Nommage: privilégie des noms courts, évocateurs, faciles à prononcer, avec un “ton chaîne TV”.
+6) Horaires: begin < end, valeurs plausibles (ex. kids tôt le matin; cinéma plutôt après-midi/soir; docs/culture en journée/soir). Utilise majoritairement des plages 6.0→24.0, et adapte certaines chaînes (ex. “MiniPop” 5.0→21.0) pour crédibilité.
+7) Description: DOIT mentionner explicitement Genres, Types, Formats et Exclusions éventuelles (si pertinent pour la chaîne).
+
+RÉFÉRENCE — GENRES NORMALISÉS
+Utiliser exclusivement ces libellés:
+Podcast, Animation, Science-Fiction, Fantastique, Family, Horror, Mini-Series, Documentaire, Histoire, Action, Aventure, Crime, War & Politics, Talk Show, Comédie, Jeux télé, Sport, Western, Drame, Martial Arts, Suspense, Mystery, Romance, YouTube
+(Note: le catalogue global exclut “Actualité/News” et “Musique”, et n’utilise pas “Sport” pour éviter les chaînes sportives dédiées.)
+
+RÉFÉRENCE — TYPES AUTORISÉS
+- "series"
+- "movie"
+
+RÉFÉRENCE — FORMATS AUTORISÉS (durées par type de case antenne)
+- 12–13 min  → slot 15    (pastilles, capsules, jeunesse préscolaire)
+- 22–26 min  → slot 30    (sitcoms, courts magazines, cartoons)
+- 45–52 min  → slot 60    (séries, documentaires)
+- 70–80 min  → slot 90    (téléfilms, spéciaux)
+- 95–110 min → slot 120   (films de soirée)
+
+GUIDE DE CONTENU MINIMAL PAR FAMILLE (exemples)
+- Généralistes (ex. Primea, Agora, Mosaik) : Genres=[Comédie, Drame, Action, Documentaire, Jeux télé, Family]; Types=[series, movie]; Formats=[12–13, 22–26, 45–52, 70–80, 95–110].
+- Policier/Thriller (ex. Crime+) : Genres=[Crime, Suspense, Mystery, Drame], Exclusions=[Animation]; Types=[series, movie]; Formats=[45–52, 95–110].
+- Séries multi-genres (ex. SerieOne, Drama+) : Genres au choix parmi Comédie/Drame/Action/SF/Fantastique/Crime/Mystery/Romance; Types=[series]; Formats=[22–26, 45–52] (Drama+ peut accepter movie 95–110).
+- SF/Fantasy (ex. NovaX) : Genres=[Science-Fiction, Fantastique, Action]; Types=[series, movie]; Formats=[22–26, 45–52, 95–110].
+- Comédie (ex. Comedia) : Genres=[Comédie, Talk Show]; Types=[series, movie]; Formats=[12–13, 22–26, 45–52, 95–110].
+- Ciné Action/Émotion/Frisson/Famille (ex. ActionMax, Emotia, Nocturna, FamilyCiné) : Types=[movie], Genres et Formats adaptés (souvent 95–110; FamilyCiné peut 70–80 en après-midi).
+- Culture/Docs (ex. Artemis, TerraDoc, Chronos, Eureka) : Genres=[Documentaire, Histoire, War & Politics, Drame]; Types=[series, movie]; Formats=[45–52, 95–110] (+ 12–13 pour capsules Eureka).
+- Jeunesse/Animation (ex. Cartoonia, ToonX, MiniPop, AniVerse) : Genres=[Animation, Comédie, Family, Aventure, Action, Science-Fiction]; Types=[series, movie]; Formats=[12–13, 22–26, 70–80, 95–110]; Exclusions de contenus inadaptés au besoin (ex. MiniPop exclut Horror/Crime/Suspense).
+
+PROCÉDURE DE GÉNÉRATION
+1) Crée 18–24 chaînes couvrant les familles ci-dessus, en respectant les Interdictions globales.
+2) Pour chaque chaîne, génère un name et une description exhaustive (Genres, Types, Formats, Exclusions si besoin, promesse éditoriale).
+3) Attribue des horaires plausibles (begin/end) cohérents avec la cible.
+4) Valide: pas de doublons de name, begin < end partout, pas de musique/actualité/sport.
+5) Rends UNIQUEMENT le tableau JSON (aucun texte additionnel).
