@@ -1,6 +1,7 @@
 import json
 import os
 import random
+import sys
 import time
 from collections import defaultdict
 from datetime import timedelta, datetime
@@ -22,6 +23,10 @@ ERSATZTV_PLAYOUT_DIR = "/root/.local/share/playout"
 SUPER_CATEGORIES = {
     "Anime": ["item1", "item3"]
 }
+
+
+def write_log(log, erase=False, next_line=False):
+        sys.stdout.write(f"\r{log}\n")
 
 
 class ShowSelector:
@@ -308,11 +313,6 @@ class JellyfinShowRetriever:
         with open(self.show_file_path, "w", encoding="utf-8", ) as f:
             json.dump(shows, f, indent=4, ensure_ascii=False)
 
-    # def get_parent_info(self, parent_id):
-    #     url = f"{self.base_url}/Users/{self.user_id}/Views"
-    #     r = requests.get(url, headers=self.headers)
-    #     pprint.pprint(r.json().get('Items', []))
-
 
 class ShowAnalyzer:
 
@@ -336,14 +336,13 @@ class GridGenerator:
         os.makedirs(self.catalog_templates_dir_path, exist_ok=True)
 
     def generate_catalog(self, catalog_name, catalog_template="random", channel_count=1):
-
         show_retriever = JellyfinShowRetriever(
             settings.JELLYFIN_URL,
             settings.JELLYFIN_API_KEY,
             settings.JELLYFIN_USERNAME
         )
         shows_list = show_retriever.get_shows(1000)
-
+        write_log(f"{len(shows_list)} shows found")
         catalog = self.get_or_create_catalog(catalog_name)
 
         channels: list[Channel] = catalog['channels']
@@ -490,15 +489,18 @@ def ensure_base_directories():
 
 
 if __name__ == '__main__':
-    print("starting")
+    write_log("ensuring main directories existences")
     ensure_base_directories()
-    cat = GridGenerator().generate_catalog("c1", catalog_template="demo3")
-    for c in cat['channels']:
-        print(c['name'], "begin")
-        PlayoutGenerator(c).generate_playout()
+    write_log("starting creating channels")
+    generate_catalog = GridGenerator().generate_catalog("c1", catalog_template="demo2")
+    write_log(f"Found {len(generate_catalog['channels'])} channel(s)")
+    for catalog_channel in generate_catalog['channels']:
+        write_log(f"{catalog_channel['name']} - Initialisation", True)
+        PlayoutGenerator(catalog_channel).generate_playout()
+        write_log(f"{catalog_channel['name']} - Complete", True, True)
         try:
-            ErsatzTvApi().configura_channel(c)
+            ErsatzTvApi().configura_channel(catalog_channel)
         except Exception as e:
             print(str(e))
-            break
-        print(c['name'], "ok")
+        else:
+            print(catalog_channel['name'], "ok")

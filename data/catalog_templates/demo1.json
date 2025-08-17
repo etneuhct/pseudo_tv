@@ -1,0 +1,256 @@
+{
+  "name": "demo1",
+  "step": 0,
+  "channels": [
+    {
+      "name": "Game One",
+      "description": "Chaîne geek et pop culture consacrée à l’animation japonaise, aux jeux vidéo et aux séries cultes.",
+      "begin": 6.0,
+      "end": 24.0,
+      "fillers": ["Anime", "SF"],
+      "blocks": [
+        {
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "YouTube",
+                "Podcast"
+              ]
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ]
+            }
+          ],
+          "begin": 6.0,
+          "end": 7.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 22,
+            "show_max_duration": 26,
+            "slot_duration": 30
+          }
+        },
+        {
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Animation"
+              ]
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ]
+            }
+          ],
+          "begin": 7.0,
+          "end": 9.0,
+          "slot_count": 4,
+          "slot_format": {
+            "show_min_duration": 22,
+            "show_max_duration": 26,
+            "slot_duration": 30
+          }
+        },
+        {
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Animation"
+              ]
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ]
+            }
+          ],
+          "begin": 9.0,
+          "end": 10.5,
+          "slot_count": 3,
+          "slot_format": {
+            "show_min_duration": 22,
+            "show_max_duration": 26,
+            "slot_duration": 30
+          }
+        },
+        {
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Science-Fiction"
+              ]
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ]
+            }
+          ],
+          "begin": 10.5,
+          "end": 13.5,
+          "slot_count": 3,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          }
+        },
+        {
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Jeux télé"
+              ]
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ]
+            }
+          ],
+          "begin": 13.5,
+          "end": 15.0,
+          "slot_count": 3,
+          "slot_format": {
+            "show_min_duration": 12,
+            "show_max_duration": 13,
+            "slot_duration": 15
+          }
+        },
+        {
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Animation"
+              ]
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ]
+            }
+          ],
+          "begin": 15.0,
+          "end": 17.0,
+          "slot_count": 4,
+          "slot_format": {
+            "show_min_duration": 22,
+            "show_max_duration": 26,
+            "slot_duration": 30
+          }
+        },
+        {
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Martial Arts"
+              ]
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ]
+            }
+          ],
+          "begin": 17.0,
+          "end": 19.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          }
+        },
+        {
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Animation"
+              ]
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ]
+            }
+          ],
+          "begin": 19.0,
+          "end": 20.5,
+          "slot_count": 3,
+          "slot_format": {
+            "show_min_duration": 22,
+            "show_max_duration": 26,
+            "slot_duration": 30
+          }
+        },
+        {
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Action"
+              ]
+            },
+            {
+              "category": "type",
+              "values": [
+                "film"
+              ]
+            }
+          ],
+          "begin": 20.5,
+          "end": 22.5,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          }
+        },
+        {
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Animation"
+              ]
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ]
+            }
+          ],
+          "begin": 22.5,
+          "end": 24.0,
+          "slot_count": 3,
+          "slot_format": {
+            "show_min_duration": 22,
+            "show_max_duration": 26,
+            "slot_duration": 30
+          }
+        }
+      ]
+    }
+  ]
+}

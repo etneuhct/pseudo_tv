@@ -1,0 +1,34 @@
+content:{% for block in channel['blocks'] %}{% if block['shows'] %}
+  - marathon:
+    key: "block_{{channel['blocks'].index(block)}}"
+    searches:{% for show in block['shows'] %}
+        - "type:episode AND show_title:\"{{ show['name'] }}\""{% endfor %}
+    group_by: "show"
+    item_order: "chronological"
+    play_all_items: true
+    shuffle_groups: false
+{% endif %}{% endfor %}
+  - search:
+    key: "FILLERS"
+    query: "type:episode AND show_tag:filler {% if channel['fillers'] %} AND show_tag:({{" OR ".join(channel['fillers'])}}) {% endif %}"
+    order: shuffle
+
+sequence:{% for block in channel['blocks'] %}{% if block['shows'] %}
+  - key: "sequence_{{ channel['blocks'].index(block) }}"
+    items:
+      - count: {{ block["slot_count"] }}
+        content: "block_{{ channel['blocks'].index(block) }}"{% endif %}{% endfor %}
+
+reset:
+  - wait_until: "{{ hour_float_to_hour_minute(channel['begin']) }}"
+    tomorrow: false
+    rewind_on_reset: false
+
+
+playout:{% for block in channel['blocks'] %}{% if block['shows'] %}
+  - pad_until: "{{hour_float_to_hour_minute(block['begin'])}}"
+    content: "FILLERS"
+    trim: true
+    filler_kind: "preroll"
+    tomorrow: false
+  - sequence: "sequence_{{ channel['blocks'].index(block) }}"{% endif %}{% endfor %}
