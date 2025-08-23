@@ -26,7 +26,7 @@ SUPER_CATEGORIES = {
 
 
 def write_log(log, erase=False, next_line=False):
-        sys.stdout.write(f"\r{log}\n")
+    sys.stdout.write(f"\r{log}\n")
 
 
 class ShowSelector:
@@ -444,7 +444,7 @@ class ErsatzTvApi:
 
     def configura_channel(self, channel: Channel):
         self.create_channel(channel)
-        self.create_yml_playout(channel)
+        # self.create_yml_playout(channel)
 
     def create_channel(self, channel: Channel):
         with sync_playwright() as p:
@@ -454,11 +454,12 @@ class ErsatzTvApi:
             page.goto(f"{self.url}/channels/add")
             page.get_by_role("group").filter(has_text="Name").get_by_role("textbox").fill(channel['name'])
             time.sleep(1)
-            if "logo" in channel:
-                logo_file_path = os.path.join(DATA_DIR, "logo", channel['logo'])
-                if os.path.exists(logo_file_path):
-                    page.set_input_files("#fileInput", logo_file_path)
-                    time.sleep(2)
+            logo_file_path = os.path.join(DATA_DIR, "logo", channel['logo']) if "logo" in channel else os.path.join(
+                DATA_DIR, "logo", f"{channel['name']}.png")
+            if os.path.exists(logo_file_path):
+                page.set_input_files("#fileInput", logo_file_path)
+                time.sleep(2)
+
             page.get_by_role("button", name="Add Channel").click()
             time.sleep(5)
 
@@ -494,6 +495,7 @@ if __name__ == '__main__':
     write_log("starting creating channels")
     generate_catalog = GridGenerator().generate_catalog("c1", catalog_template="demo2")
     write_log(f"Found {len(generate_catalog['channels'])} channel(s)")
+    i = 0
     for catalog_channel in generate_catalog['channels']:
         write_log(f"{catalog_channel['name']} - Initialisation", True)
         PlayoutGenerator(catalog_channel).generate_playout()
@@ -504,3 +506,6 @@ if __name__ == '__main__':
             print(str(e))
         else:
             print(catalog_channel['name'], "ok")
+        i += 1
+        if i  > 0:
+            exit()

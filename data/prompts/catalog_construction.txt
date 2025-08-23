@@ -1,116 +1,221 @@
-Tu es un générateur de chaînes de télévision au format JSON strictement conforme au schéma ci-dessous.
+📄 Spécification pour la génération de chaînes télé
 
-Tu dois générer un objet de type Channel (format JSON), contenant un ou plusieurs ChannelBlock, chacun représentant un bloc horaire dédié à un type d’émission.
-
-Objectif :
-Génère un objet de type Channel (format JSON), représentant une chaîne de télévision réaliste comme TF1, en respectant les contraintes suivantes :
-
-Structure attendue :
-
-Channel (objet principal) — type : TypedDict
-- name: nom de la chaîne (ex : "TF1")
-- description: texte libre (ex : "Chaîne de divertissement généraliste")
-- blocks: liste de blocs horaires (list[ChannelBlock])
-- begin: heure d’ouverture de la chaîne (float, ex: 6.0)
-- end: heure de fin de diffusion (float, ex: 24.0)
-
-Chaque élément de blocks est un objet de type ChannelBlock :
-- criteria: liste de critères (list[Criteria]) servant à filtrer les émissions compatibles avec ce bloc
-- begin: heure de début du bloc (float)
-- end: heure de fin du bloc (float)
-- slot_count: entier entre 1 et 3 → nombre d’émissions à diffuser dans ce bloc
-- slot_format: objet SlotFormat
-
-SlotFormat — type : TypedDict
-- show_min_duration: durée minimale (en minutes) de l’émission dans le bloc
-- show_max_duration: durée maximale (en minutes)
-- slot_duration: durée totale (en minutes) allouée à chaque émission, y compris publicité (en général : show_max_duration + 5 à 10 min)
-
-Contraintes obligatoires :
-
-1. Slots autorisés uniquement (pré-définis) :
-Tu dois choisir un slot parmi ceux-ci pour chaque bloc :
-
-[
-  {"show_min_duration": 12, "show_max_duration": 13, "slot_duration": 15},   // pastille courte
-  {"show_min_duration": 22, "show_max_duration": 26, "slot_duration": 30},   // sitcom, court magazine
-  {"show_min_duration": 45, "show_max_duration": 52, "slot_duration": 60},   // série, docu
-  {"show_min_duration": 70, "show_max_duration": 80, "slot_duration": 90},   // téléfilm
-  {"show_min_duration": 95, "show_max_duration": 110, "slot_duration": 120}  // film du soir
-]
-
-2. Slot count (slot_count)
-- Doit être compris entre 1 et 3
-- La plage horaire du bloc doit couvrir :
-  slot_count × slot_duration / 60 heures
-
-3. Critères (criteria)
-- La correspondance d’un show avec un bloc est cumulative :
-  - Le show doit respecter tous les critères (AND global)
-  - Mais pour chaque critère : une seule des values suffit (OR local)
-
-  Exemple :
-  [
-    {"category": "genre", "values": ["polar"]},
-    {"category": "genre", "values": ["science-fiction"]},
-    {"category": "type", "values": ["series"]}
-  ]
-  → Le show doit être à la fois polar ET science-fiction ET une série.
-
-- Les catégories possibles sont :
-  - "genre"
-  - "type"
-  - "duration" (facultatif mais valide)
-- Tu dois toujours inclure un critère type dont la valeur est soit "series" soit "film" (jamais autre chose).
-
-4. Aucune inclusion de shows ni de available_*
-- Ignore totalement les champs shows, available_properties, available_slot_format, available_slot_count.
-
-5. Respect du réalisme
-- Répartis les blocs dans la journée (entre begin et end)
-- Adapte les types de programme à l’heure (ex : film en soirée, magazine le matin, fiction l’après-midi)
-- Ne surcharge pas un même type de slot
-
-Genres disponibles :
-Tu dois utiliser uniquement les genres suivants dans les critères de type "genre" :
-
-[
-  "Histoire", "Comédie", "Science-Fiction", "Fantastique", "Children",
-  "Mini-Series", "Talk Show", "Action & Adventure", "Action", "Drame",
-  "Documentaire", "Horreur", "Vulgarisation", "Western",
-  "Science-Fiction & Fantastique", "Sport", "Guerre", "Animation",
-  "Thriller/Suspense", "Romance", "Familial", "Crime", "Aventure",
-  "Jeux télé", "Martial Arts", "Mystère", "Podcast", "YouTube", "Anime", "Mystery"
-]
-
-- Tu peux utiliser plusieurs genres dans un même critère (values), ou bien combiner plusieurs critères "genre" pour croiser les filtres.
-- N’utilise aucun autre genre en dehors de cette liste.
-- Tu peux répéter "genre" dans plusieurs critères si tu veux forcer des combinaisons (ex: "Comédie" ET "Fantastique").
-
-Exemple de sortie (résumé) :
+1. Structure globale du catalogue
+---------------------------------
 {
-  "name": "TF1",
-  "description": "Chaîne de divertissement généraliste",
+  "name": "nom_catalogue",
+  "step": 0,
+  "channels": [ ... ]
+}
+- name : Nom du catalogue.
+- step : Étape de génération (0 = initialisation).
+- channels : Liste des chaînes.
+
+2. Structure d'une chaîne (Channel)
+-----------------------------------
+{
+  "name": "nom_chaine",
+  "description": "description courte",
+  "begin": 6.0,
+  "end": 24.0,
+  "fillers": ["genre_normalisé1", "genre_normalisé2"],
+  "blocks": [ ... ]
+}
+- name : Nom de la chaîne.
+- description : Texte libre (non utilisé pour la génération, mais utile plus tard).
+- begin / end : Heure de début et fin de diffusion (float, ex: 6.0 = 06:00). Peut varier selon la chaîne.
+- fillers : Liste de genres normalisés (voir §7).
+- blocks : Liste des blocs horaires.
+
+3. Structure d’un bloc horaire (ChannelBlock)
+---------------------------------------------
+{
+  "criteria": [ ... ],
+  "begin": 8.0,
+  "end": 9.5,
+  "slot_count": 3,
+  "slot_format": { "show_min_duration": 22, "show_max_duration": 26, "slot_duration": 30 },
+  "shows": []
+}
+Obligations :
+1. Durée du bloc = (slot_duration * slot_count) / 60 heures.
+2. slot_count ∈ {1, 2} (jamais plus de 2).
+3. slot_format doit être un des formats autorisés (voir §5).
+4. criteria obligatoire, au moins un.
+5. shows : liste vide ou remplie plus tard.
+6. Les horaires doivent se suivre sans chevauchement (trous possibles).
+
+4. Structure d’un critère (Criteria)
+------------------------------------
+{
+  "category": "genre",
+  "values": ["Action", "Science-Fiction"],
+  "forbidden": false
+}
+- category ∈ {"genre", "type", "language", "duration"}.
+- Cumul entre critères = ET.
+- À l’intérieur de values = OU.
+- Critère négatif : "forbidden": true → exclut ces valeurs.
+
+5. Formats autorisés pour slot_format
+-------------------------------------
+| Durée émission | Min (min) | Max (min) | Slot (min) | Utilisation |
+| 22–26 min      | 22        | 26        | 30         | Sitcoms, courts magazines |
+| 45–52 min      | 45        | 52        | 60         | Séries, documentaires |
+| 70–80 min      | 70        | 80        | 90         | Téléfilms, unitaires |
+| 95–110 min     | 95        | 110       | 120        | Films du soir |
+| 12–13 min      | 12        | 13        | 15         | Pastilles courtes |
+
+6. Valeurs autorisées pour type
+-------------------------------
+- "series"
+- "movie"
+
+7. Genres normalisés
+--------------------
+{
+  "Podcast": ["Podcast"],
+  "Animation": ["Animation", "Anime"],
+  "Science-Fiction": ["Science-Fiction", "Science Fiction", "Science-Fiction & Fantastique"],
+  "Fantastique": ["Fantastique", "Fantasy", "Science-Fiction & Fantastique"],
+  "Family": ["Family", "Familial", "Children"],
+  "Horror": ["Horror", "Horreur"],
+  "Mini-Series": ["Mini-Series"],
+  "Documentaire": ["Documentaire", "Vulgarisation"],
+  "Histoire": ["Histoire", "History"],
+  "Action": ["Action", "Action & Adventure"],
+  "Aventure": ["Aventure", "Adventure", "Action & Adventure"],
+  "Crime": ["Crime"],
+  "War & Politics": ["War & Politics", "Guerre"],
+  "Talk Show": ["Talk Show"],
+  "Comédie": ["Comédie", "Comedy"],
+  "Jeux télé": ["Jeux télé"],
+  "Sport": ["Sport"],
+  "Western": ["Western"],
+  "Drame": ["Drame", "Drama"],
+  "Martial Arts": ["Martial Arts"],
+  "Suspense": ["Suspense", "Thriller"],
+  "Mystery": ["Mystery", "Mystère"],
+  "Romance": ["Romance"],
+  "YouTube": ["YouTube"]
+}
+
+8. Règles de construction
+--------------------------
+1. Alternance des shows : éviter plus de 2–3 épisodes consécutifs de la même série.
+2. Blocs film + série : autorisés, dépend de la demande.
+3. Couverture horaire : pas forcément 24h/24, peut être partiel.
+4. Critères négatifs possibles (exclure un genre).
+5. Filtrage = cumulatif (ET entre critères, OU à l’intérieur de values).
+
+9. Exemple minimal de bloc valide
+----------------------------------
+{
+  "criteria": [
+    { "category": "genre", "values": ["Suspense"], "forbidden": false },
+    { "category": "type", "values": ["series"], "forbidden": false }
+  ],
+  "begin": 20.0,
+  "end": 22.0,
+  "slot_count": 2,
+  "slot_format": { "show_min_duration": 45, "show_max_duration": 52, "slot_duration": 60 },
+  "shows": []
+}
+
+10. Exemple de chaîne complète
+------------------------------
+{
+  "name": "Thriller Night",
+  "description": "Séries et films à suspense toute la soirée.",
+  "begin": 18.0,
+  "end": 24.0,
+  "fillers": ["Suspense"],
   "blocks": [
     {
       "criteria": [
-        {"category": "genre", "values": ["magazine", "société"]},
-        {"category": "type", "values": ["series"]}
+        { "category": "genre", "values": ["Suspense"], "forbidden": false },
+        { "category": "type", "values": ["series"], "forbidden": false }
       ],
-      "begin": 9.0,
-      "end": 10.0,
-      "slot_count": 2,
-      "slot_format": {
-        "show_min_duration": 22,
-        "show_max_duration": 26,
-        "slot_duration": 30
-      }
+      "begin": 18.0,
+      "end": 21.0,
+      "slot_count": 3,
+      "slot_format": { "show_min_duration": 45, "show_max_duration": 52, "slot_duration": 60 },
+      "shows": []
+    },
+    {
+      "criteria": [
+        { "category": "genre", "values": ["Suspense"], "forbidden": false },
+        { "category": "type", "values": ["movie"], "forbidden": false }
+      ],
+      "begin": 21.0,
+      "end": 23.0,
+      "slot_count": 1,
+      "slot_format": { "show_min_duration": 95, "show_max_duration": 110, "slot_duration": 120 },
+      "shows": []
     }
-    ...
-  ],
-  "begin": 6,
-  "end": 24
+  ]
 }
+
+
+11. Règle d’homogénéité des blocs
+---------------------------------
+- Un bloc est homogène :
+  - Tous les shows d’un bloc respectent les mêmes critères (genre, type, etc.).
+  - Si possible, tous les shows d’un bloc proviennent de la même série.
+    Exemple : un bloc slot_count: 3 avec type: series diffusera 3 épisodes consécutifs de la même série si disponible.
+- Si le catalogue ne contient pas assez d’épisodes d’une même série :
+  - On complète avec une autre série compatible avec les critères du bloc.
+- Astuce de découpage :
+  - Plutôt qu’un bloc de 3 épisodes de 3 séries différentes, on peut créer 3 blocs séparés de slot_count: 1 chacun.
+  - Exemple : au lieu d’un bloc slot_count: 3 avec 3 films → créer 3 blocs d’1 film (slot_count: 1) consécutifs.
+
+
+12. Règle d'absence de trous
+----------------------------
+- La programmation d'une chaîne doit couvrir en continu la plage horaire définie par begin et end.
+- Exemple : si begin = 6.0 et end = 18.0, tous les blocs doivent s'enchaîner sans interruption entre 6h00 et 18h00.
+- Les horaires de fin d’un bloc doivent correspondre exactement à l’horaire de début du bloc suivant.
+- Aucune minute non programmée n'est autorisée dans l’intervalle de diffusion.
+
+
+13. Génération des watermarks / logos de chaîne
+-----------------------------------------------
+Objectif
+- Pour chaque chaîne du catalogue (`channels`), générer un visuel **PNG avec transparence** (type logo/watermark) servant à la fois d’identifiant de marque et de visuel de représentation antenne.
+
+Contraintes de conception
+1. Le visuel doit être **plus qu’un simple texte en SVG** : intégrer un symbole, pictogramme, forme ou composition graphique en lien avec le **nom**, la **description** et l’**esprit** de la chaîne.
+2. Style lisible et mémorisable : privilégier des formes nettes, contrastes clairs, éviter les détails trop fins.
+3. Couleurs libres, mais prévoir une **bonne visibilité sur fond clair et sombre** (utiliser transparence du fond et, si nécessaire, un léger contour/ombre interne).
+4. **Fond transparent obligatoire** (canal alpha), pas d’aplat blanc ou de couleur unie en arrière-plan.
+5. Format recommandé : **PNG** (RGBA). Ratio libre (carré recommandé). Dimensions libres (prévoir une taille suffisante pour la déclinaison multi-supports).
+
+Nommage des fichiers
+- **Base du nom = `name` de la chaîne**, sensible à la casse.
+- **Extension `.png` obligatoire**.
+- Exemple : pour `"Channel1"` → fichier : `Channel1.png`.
+
+Production attendue
+- Un fichier PNG par chaîne, généré à partir de sa fiche (`name`, `description`, etc.).
+- Le watermark doit rester lisible en petite taille (favicon/EPG) et suffisamment détaillé pour un usage écran (carte chaîne, vignette).
+
+Validation technique
+- Chaque image :
+  - Format : **PNG**
+  - **Transparence** : canal alpha présent
+  - Intégrité : fichier ouvrable (pas corrompu)
+
+Export et livraison
+- **Inclure tous les PNG générés dans l’archive finale** (voir § “Ta tâche” mis à jour ci-dessous).
+- Arborescence simple à la racine, par exemple :
+  /
+  ├─ catalogue.json
+  ├─ ChannelA.png
+  ├─ ChannelB.png
+  └─ ...
+
 
 Ta tâche :
 Génère un unique objet JSON de type Channel respectant toutes les règles ci-dessus. N’inclus rien d’autre que le JSON brut, sans commentaire, sans introduction.
+Valide que le .json généré est un fichier .json valide
+Extrais les fichiers ainsi généré dans une archive zip.

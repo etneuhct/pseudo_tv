@@ -1,0 +1,3817 @@
+{
+  "name": "catalogue_chaines",
+  "step": 0,
+  "channels": [
+    {
+      "name": "PanoramaTV",
+      "description": "Chaîne généraliste mêlant Comédie, Drame, Action, Documentaire et Family. Types autorisés: series, movie. Formats: 12–13, 22–26, 45–52, 70–80, 95–110. Promesse éditoriale: grille équilibrée entre divertissement familial en journée et fictions fortes en prime. Exclusions: aucune.",
+      "begin": 6.0,
+      "end": 24.0,
+      "fillers": [
+        "Family",
+        "Action"
+      ],
+      "blocks": [
+        {
+          "begin": 6.0,
+          "end": 8.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Family"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 8.0,
+          "end": 10.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Comédie"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 10.0,
+          "end": 12.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Family"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 12.0,
+          "end": 14.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Documentaire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 14.0,
+          "end": 16.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Documentaire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 16.0,
+          "end": 18.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Action"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 18.0,
+          "end": 20.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Drame"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 20.0,
+          "end": 22.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Action"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 22.0,
+          "end": 24.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Drame"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        }
+      ]
+    },
+    {
+      "name": "Universum",
+      "description": "Chaîne généraliste culturelle. Genres: Documentaire, Histoire, Drame, War & Politics. Types: series, movie. Formats: 45–52, 95–110. Exclusions: pas de Comédie, pas d’Animation. Promesse: documentaires historiques et films engagés en journée et soirée.",
+      "begin": 8.0,
+      "end": 24.0,
+      "fillers": [
+        "Documentaire",
+        "Histoire"
+      ],
+      "blocks": [
+        {
+          "begin": 8.0,
+          "end": 10.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Documentaire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 10.0,
+          "end": 12.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Documentaire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 12.0,
+          "end": 14.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Histoire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 14.0,
+          "end": 16.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Drame"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 16.0,
+          "end": 18.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "War & Politics"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 18.0,
+          "end": 20.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "War & Politics"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 20.0,
+          "end": 22.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Histoire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 22.0,
+          "end": 24.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Drame"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        }
+      ]
+    },
+    {
+      "name": "Thrillix",
+      "description": "Spécialisée dans le Crime, Suspense, Mystery et Drame. Types: series, movie. Formats: 45–52, 95–110. Exclusions: Animation. Programmation orientée thriller policier et enquêtes, soirées tendues et immersives.",
+      "begin": 18.0,
+      "end": 26.0,
+      "fillers": [
+        "Suspense",
+        "Crime"
+      ],
+      "blocks": [
+        {
+          "begin": 18.0,
+          "end": 20.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Crime"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 20.0,
+          "end": 22.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Suspense"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 22.0,
+          "end": 24.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Suspense"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 24.0,
+          "end": 26.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Mystery"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        }
+      ]
+    },
+    {
+      "name": "Stellar",
+      "description": "Chaîne dédiée à la Science-Fiction, Fantastique et Action. Types: series, movie. Formats: 22–26, 45–52, 95–110. Exclusions: pas de Family ni Talk Show. Promesse: univers futuristes et mondes imaginaires en prime et late night.",
+      "begin": 14.0,
+      "end": 26.0,
+      "fillers": [
+        "Science-Fiction",
+        "Fantastique"
+      ],
+      "blocks": [
+        {
+          "begin": 14.0,
+          "end": 16.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Science-Fiction",
+                "Fantastique"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 16.0,
+          "end": 18.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Science-Fiction",
+                "Fantastique"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 18.0,
+          "end": 20.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Action"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 20.0,
+          "end": 22.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Fantastique"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 22.0,
+          "end": 24.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Science-Fiction"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 24.0,
+          "end": 26.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Action"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        }
+      ]
+    },
+    {
+      "name": "RireTV",
+      "description": "Chaîne 100% Comédie et Talk Show. Types: series, movie. Formats: 12–13, 22–26, 45–52, 95–110. Exclusions: Horror, Crime. Programmation familiale et légère en journée et comédies cultes en prime.",
+      "begin": 6.0,
+      "end": 24.0,
+      "fillers": [
+        "Comédie",
+        "Talk Show"
+      ],
+      "blocks": [
+        {
+          "begin": 6.0,
+          "end": 8.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Talk Show"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 8.0,
+          "end": 10.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Comédie"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 10.0,
+          "end": 12.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Talk Show"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 12.0,
+          "end": 14.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Comédie"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 14.0,
+          "end": 16.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Talk Show"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 16.0,
+          "end": 18.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Comédie"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 18.0,
+          "end": 20.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Comédie"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 20.0,
+          "end": 22.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Comédie"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 22.0,
+          "end": 24.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Comédie"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        }
+      ]
+    },
+    {
+      "name": "Épopée",
+      "description": "Cinéma grand spectacle. Genres: Action, Aventure, Fantasy, Science-Fiction. Types: movie. Formats: 95–110. Exclusions: pas de mini-séries, pas de documentaires. Promesse: blockbusters et sagas le soir.",
+      "begin": 15.0,
+      "end": 24.0,
+      "fillers": [
+        "Action",
+        "Aventure"
+      ],
+      "blocks": [
+        {
+          "begin": 15.0,
+          "end": 18.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 70,
+            "show_max_duration": 80,
+            "slot_duration": 90
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Aventure"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 18.0,
+          "end": 20.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Action"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 20.0,
+          "end": 22.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Fantastique"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 22.0,
+          "end": 24.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Science-Fiction"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        }
+      ]
+    },
+    {
+      "name": "Émotion+",
+      "description": "Chaîne cinéma centrée sur Drame, Romance et Family. Types: movie. Formats: 70–80, 95–110. Exclusions: pas d’Horror, pas de Crime. Programmation sentimentale en après-midi et prime émotion.",
+      "begin": 10.0,
+      "end": 24.0,
+      "fillers": [
+        "Drame",
+        "Romance"
+      ],
+      "blocks": [
+        {
+          "begin": 10.0,
+          "end": 13.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 70,
+            "show_max_duration": 80,
+            "slot_duration": 90
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Drame"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 13.0,
+          "end": 16.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 70,
+            "show_max_duration": 80,
+            "slot_duration": 90
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Romance"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 16.0,
+          "end": 20.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Drame"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 20.0,
+          "end": 24.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Romance"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        }
+      ]
+    },
+    {
+      "name": "FrissonMax",
+      "description": "Cinéma de genre: Horror, Suspense, Mystery. Types: movie. Formats: 95–110. Exclusions: pas d’Animation, pas de Family. Programmation horreur et frisson en soirée et late night.",
+      "begin": 20.0,
+      "end": 27.0,
+      "fillers": [
+        "Horror",
+        "Suspense"
+      ],
+      "blocks": [
+        {
+          "begin": 20.0,
+          "end": 23.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 70,
+            "show_max_duration": 80,
+            "slot_duration": 90
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Horror"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 23.0,
+          "end": 25.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Suspense"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 25.0,
+          "end": 27.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Mystery"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        }
+      ]
+    },
+    {
+      "name": "FamiliaCiné",
+      "description": "Films familiaux et d’animation. Genres: Family, Comédie, Animation, Aventure. Types: movie. Formats: 70–80, 95–110. Exclusions: Horror, Crime. Programmation après-midi enfants et soirées familiales.",
+      "begin": 9.0,
+      "end": 22.0,
+      "fillers": [
+        "Family",
+        "Animation"
+      ],
+      "blocks": [
+        {
+          "begin": 9.0,
+          "end": 13.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Family"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 13.0,
+          "end": 17.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Animation",
+                "Comédie"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 17.0,
+          "end": 20.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 70,
+            "show_max_duration": 80,
+            "slot_duration": 90
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Aventure",
+                "Family"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 20.0,
+          "end": 22.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Comédie",
+                "Family"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        }
+      ]
+    },
+    {
+      "name": "DocuTerra",
+      "description": "Chaîne documentaire nature et sciences. Genres: Documentaire, Science-Fiction (vulgarisation), Histoire. Types: series, movie. Formats: 45–52, 95–110. Exclusions: pas de Fiction dramatique. Promesse: grands docs sur la planète et la science en journée et soirée.",
+      "begin": 6.0,
+      "end": 23.0,
+      "fillers": [
+        "Documentaire",
+        "Histoire"
+      ],
+      "blocks": [
+        {
+          "begin": 6.0,
+          "end": 8.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Documentaire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 8.0,
+          "end": 10.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Documentaire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 10.0,
+          "end": 12.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Histoire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 12.0,
+          "end": 14.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Science-Fiction"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 14.0,
+          "end": 16.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Documentaire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 16.0,
+          "end": 18.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Histoire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 18.0,
+          "end": 20.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Documentaire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 20.0,
+          "end": 22.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Documentaire",
+                "Histoire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 22.0,
+          "end": 23.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Documentaire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        }
+      ]
+    },
+    {
+      "name": "Historia",
+      "description": "Chaîne dédiée à l’Histoire et aux grands récits. Genres: Histoire, Documentaire, Drame, War & Politics. Types: series, movie. Formats: 45–52, 95–110. Exclusions: pas de Comédie, pas d’Animation. Programmation éducative en journée et fresques historiques en prime.",
+      "begin": 7.0,
+      "end": 24.0,
+      "fillers": [
+        "Histoire",
+        "War & Politics"
+      ],
+      "blocks": [
+        {
+          "begin": 7.0,
+          "end": 9.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Histoire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 9.0,
+          "end": 11.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Documentaire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 11.0,
+          "end": 13.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Drame"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 13.0,
+          "end": 15.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "War & Politics"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 15.0,
+          "end": 17.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Histoire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 17.0,
+          "end": 19.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Documentaire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 19.0,
+          "end": 21.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Drame",
+                "War & Politics"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 21.0,
+          "end": 23.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Histoire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 23.0,
+          "end": 24.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Histoire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        }
+      ]
+    },
+    {
+      "name": "Curio",
+      "description": "Chaîne du savoir et de la découverte. Genres: Documentaire, Science-Fiction (scientifique), Drame. Types: series, movie. Formats: 12–13, 45–52, 95–110. Exclusions: pas d’Horror. Promesse: capsules courtes le matin et docs longs en soirée.",
+      "begin": 6.0,
+      "end": 23.0,
+      "fillers": [
+        "Documentaire",
+        "Science-Fiction"
+      ],
+      "blocks": [
+        {
+          "begin": 6.0,
+          "end": 6.5,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 12,
+            "show_max_duration": 13,
+            "slot_duration": 15
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Documentaire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 6.5,
+          "end": 7.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 12,
+            "show_max_duration": 13,
+            "slot_duration": 15
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Science-Fiction"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 7.0,
+          "end": 7.5,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 12,
+            "show_max_duration": 13,
+            "slot_duration": 15
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Documentaire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 7.5,
+          "end": 8.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 12,
+            "show_max_duration": 13,
+            "slot_duration": 15
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Science-Fiction"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 8.0,
+          "end": 9.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Documentaire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 9.0,
+          "end": 10.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Drame"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 10.0,
+          "end": 11.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Science-Fiction"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 11.0,
+          "end": 12.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Documentaire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 12.0,
+          "end": 13.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Drame"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 13.0,
+          "end": 14.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Science-Fiction"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 14.0,
+          "end": 15.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Documentaire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 15.0,
+          "end": 17.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Documentaire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 17.0,
+          "end": 19.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Drame"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 19.0,
+          "end": 21.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Science-Fiction"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 21.0,
+          "end": 23.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Documentaire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        }
+      ]
+    },
+    {
+      "name": "MiniClub",
+      "description": "Chaîne préscolaire. Genres: Animation, Family, Comédie. Types: series, movie. Formats: 12–13, 22–26, 70–80. Exclusions: Horror, Crime, Suspense. Programmation matin et après-midi adaptée aux 3–6 ans.",
+      "begin": 5.0,
+      "end": 21.0,
+      "fillers": [
+        "Animation",
+        "Family"
+      ],
+      "blocks": [
+        {
+          "begin": 5.0,
+          "end": 8.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 70,
+            "show_max_duration": 80,
+            "slot_duration": 90
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Animation"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 8.0,
+          "end": 11.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 70,
+            "show_max_duration": 80,
+            "slot_duration": 90
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Family"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 11.0,
+          "end": 14.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 70,
+            "show_max_duration": 80,
+            "slot_duration": 90
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Comédie"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 14.0,
+          "end": 17.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 70,
+            "show_max_duration": 80,
+            "slot_duration": 90
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Animation"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 17.0,
+          "end": 20.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 70,
+            "show_max_duration": 80,
+            "slot_duration": 90
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Family"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 20.0,
+          "end": 21.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Comédie"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        }
+      ]
+    },
+    {
+      "name": "ToonPlay",
+      "description": "Animation et cartoons pour enfants. Genres: Animation, Aventure, Family, Comédie. Types: series, movie. Formats: 12–13, 22–26, 70–80, 95–110. Exclusions: Horror, Crime. Promesse: programmes ludiques toute la journée.",
+      "begin": 6.0,
+      "end": 22.0,
+      "fillers": [
+        "Animation",
+        "Aventure"
+      ],
+      "blocks": [
+        {
+          "begin": 6.0,
+          "end": 8.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Animation"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 8.0,
+          "end": 10.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Family"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 10.0,
+          "end": 13.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 70,
+            "show_max_duration": 80,
+            "slot_duration": 90
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Animation"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 13.0,
+          "end": 15.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Aventure"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 15.0,
+          "end": 18.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 70,
+            "show_max_duration": 80,
+            "slot_duration": 90
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Family"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 18.0,
+          "end": 20.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Comédie"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 20.0,
+          "end": 22.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Comédie"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        }
+      ]
+    },
+    {
+      "name": "AniCore",
+      "description": "Anime pour adolescents et jeunes adultes. Genres: Animation, Action, Science-Fiction, Fantastique, Drame. Types: series, movie. Formats: 22–26, 45–52, 95–110. Exclusions: pas de contenu préscolaire. Programmation du soir jusqu’au late night.",
+      "begin": 14.0,
+      "end": 26.0,
+      "fillers": [
+        "Animation",
+        "Action"
+      ],
+      "blocks": [
+        {
+          "begin": 14.0,
+          "end": 16.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Animation"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 16.0,
+          "end": 18.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Action"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 18.0,
+          "end": 20.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Science-Fiction"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 20.0,
+          "end": 22.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Fantastique"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 22.0,
+          "end": 24.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Action"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 24.0,
+          "end": 26.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Drame"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        }
+      ]
+    },
+    {
+      "name": "CinéNoir",
+      "description": "Chaîne cinéma dédiée au polar et au suspense. Genres: Crime, Mystery, Suspense. Types: movie. Formats: 95–110. Exclusions: Animation, Comédie. Programmation prime et seconde partie de soirée.",
+      "begin": 18.0,
+      "end": 26.0,
+      "fillers": [
+        "Crime",
+        "Suspense"
+      ],
+      "blocks": [
+        {
+          "begin": 18.0,
+          "end": 20.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Crime"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 20.0,
+          "end": 22.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Suspense"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 22.0,
+          "end": 24.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Mystery"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 24.0,
+          "end": 26.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Crime"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        }
+      ]
+    },
+    {
+      "name": "MaisonVie",
+      "description": "Chaîne lifestyle autour de la maison et de la décoration. Genres: Documentaire, Family, Comédie. Types: series, movie. Formats: 22–26, 45–52, 70–80. Exclusions: Horror, Crime. Programmation en journée et début de soirée.",
+      "begin": 7.0,
+      "end": 23.0,
+      "fillers": [
+        "Family",
+        "Comédie"
+      ],
+      "blocks": [
+        {
+          "begin": 7.0,
+          "end": 10.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 70,
+            "show_max_duration": 80,
+            "slot_duration": 90
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Documentaire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 10.0,
+          "end": 13.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 70,
+            "show_max_duration": 80,
+            "slot_duration": 90
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Family"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 13.0,
+          "end": 16.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 70,
+            "show_max_duration": 80,
+            "slot_duration": 90
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Comédie"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 16.0,
+          "end": 19.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 70,
+            "show_max_duration": 80,
+            "slot_duration": 90
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Documentaire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 19.0,
+          "end": 20.5,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 70,
+            "show_max_duration": 80,
+            "slot_duration": 90
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Family"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 20.5,
+          "end": 22.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 70,
+            "show_max_duration": 80,
+            "slot_duration": 90
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Comédie"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 22.0,
+          "end": 23.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Comédie"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        }
+      ]
+    },
+    {
+      "name": "SaveursTV",
+      "description": "Chaîne culinaire et art de vivre. Genres: Documentaire, Family, Comédie. Types: series, movie. Formats: 22–26, 45–52, 70–80. Exclusions: Horror, Suspense. Programmation gourmande en journée et prime spécial cuisine.",
+      "begin": 8.0,
+      "end": 23.0,
+      "fillers": [
+        "Documentaire",
+        "Family"
+      ],
+      "blocks": [
+        {
+          "begin": 8.0,
+          "end": 11.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 70,
+            "show_max_duration": 80,
+            "slot_duration": 90
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Documentaire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 11.0,
+          "end": 14.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 70,
+            "show_max_duration": 80,
+            "slot_duration": 90
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Family"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 14.0,
+          "end": 17.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 70,
+            "show_max_duration": 80,
+            "slot_duration": 90
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Comédie"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 17.0,
+          "end": 20.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 70,
+            "show_max_duration": 80,
+            "slot_duration": 90
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Documentaire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 20.0,
+          "end": 23.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 70,
+            "show_max_duration": 80,
+            "slot_duration": 90
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Family"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        }
+      ]
+    },
+    {
+      "name": "GlobeTrek",
+      "description": "Chaîne voyage et aventure. Genres: Documentaire, Aventure, Family. Types: series, movie. Formats: 22–26, 45–52, 95–110. Exclusions: Horror, Crime. Promesse: explorations et films d’aventure en journée et soirée.",
+      "begin": 9.0,
+      "end": 23.0,
+      "fillers": [
+        "Aventure",
+        "Documentaire"
+      ],
+      "blocks": [
+        {
+          "begin": 9.0,
+          "end": 11.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Aventure"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 11.0,
+          "end": 13.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Family"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 13.0,
+          "end": 15.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Aventure"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 15.0,
+          "end": 17.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Documentaire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 17.0,
+          "end": 19.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Documentaire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 19.0,
+          "end": 21.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Aventure"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 21.0,
+          "end": 23.0,
+          "slot_count": 1,
+          "slot_format": {
+            "show_min_duration": 95,
+            "show_max_duration": 110,
+            "slot_duration": 120
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Documentaire"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "movie"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        }
+      ]
+    },
+    {
+      "name": "SagaOne",
+      "description": "Chaîne séries multi-genres. Genres: Drame, Comédie, Crime, Romance, Action. Types: series. Formats: 22–26, 45–52. Exclusions: Horror, Animation. Promesse: feuilletons quotidiens et grandes sagas en prime.",
+      "begin": 12.0,
+      "end": 24.0,
+      "fillers": [
+        "Drame",
+        "Romance"
+      ],
+      "blocks": [
+        {
+          "begin": 12.0,
+          "end": 14.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Drame"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 14.0,
+          "end": 16.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Comédie"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 16.0,
+          "end": 18.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Crime"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 18.0,
+          "end": 20.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Romance"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 20.0,
+          "end": 22.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Action"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        },
+        {
+          "begin": 22.0,
+          "end": 24.0,
+          "slot_count": 2,
+          "slot_format": {
+            "show_min_duration": 45,
+            "show_max_duration": 52,
+            "slot_duration": 60
+          },
+          "criteria": [
+            {
+              "category": "genre",
+              "values": [
+                "Drame"
+              ],
+              "forbidden": false
+            },
+            {
+              "category": "type",
+              "values": [
+                "series"
+              ],
+              "forbidden": false
+            }
+          ],
+          "shows": []
+        }
+      ]
+    }
+  ]
+}

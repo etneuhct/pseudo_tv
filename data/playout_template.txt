@@ -32,3 +32,4 @@ playout:{% for block in channel['blocks'] %}{% if block['shows'] %}
     filler_kind: "preroll"
     tomorrow: false
   - sequence: "sequence_{{ channel['blocks'].index(block) }}"{% endif %}{% endfor %}
+  - repeat: true
