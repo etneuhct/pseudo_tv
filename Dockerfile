@@ -1,4 +1,4 @@
-FROM python:3.10-slim
+FROM python:3.10-slim-bookworm
 
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
@@ -24,7 +24,7 @@ RUN poetry config virtualenvs.create false \
  && poetry install --no-interaction --no-ansi --no-root \
  && rm -rf /root/.cache/pypoetry
 
-RUN python -m playwright install --with-deps chromium
+RUN poetry run playwright install --with-deps chromium
 
 COPY . .
 

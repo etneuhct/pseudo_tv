@@ -10,9 +10,6 @@ requests = "^2.32.3"
 playwright = "^1.52.0"
 python-dotenv = "^1.1.0"
 Jinja2 = "^3.1.6"
-openai = "^1.91.0"
-paramiko = "^3.5.1"
-scpclient = "^0.7"
 
 [tool.poetry.dev-dependencies]
 

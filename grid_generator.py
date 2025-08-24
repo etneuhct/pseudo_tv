@@ -1,32 +1,29 @@
 import json
 import os
 import random
+import re
 import sys
 import time
 from collections import defaultdict
-from datetime import timedelta, datetime
 
 import jinja2
 import requests
 from playwright.sync_api import sync_playwright
 
 import settings
+from channel_description import print_channel_full_description
 from data_types import Show, CategoryCriteria, Criteria, SlotFormat, ChannelBlock, Channel, Catalog, \
     CatalogGenerationStep
+from settings import DATA_DIR, PLAYOUT_DIR, ERSATZTV_PLAYOUT_DIR, SUPER_CATEGORIES
 from utils import deserialize_enum_keys
+from utils import hour_float_to_hour_minute
 
 random.seed(666)
-DATA_DIR = "data"
-PLAYOUT_DIR = "output"
-ERSATZTV_PLAYOUT_DIR = "/root/.local/share/playout"
-
-SUPER_CATEGORIES = {
-    "Anime": ["item1", "item3"]
-}
 
 
-def write_log(log, erase=False, next_line=False):
+def write_log(log):
     sys.stdout.write(f"\r{log}\n")
+    sys.stdout.flush()
 
 
 class ShowSelector:
@@ -444,7 +441,7 @@ class ErsatzTvApi:
 
     def configura_channel(self, channel: Channel):
         self.create_channel(channel)
-        # self.create_yml_playout(channel)
+        self.create_yml_playout(channel)
 
     def create_channel(self, channel: Channel):
         with sync_playwright() as p:
@@ -477,11 +474,19 @@ class ErsatzTvApi:
             page.get_by_role("button", name="Add YAML Playout").click()
             time.sleep(3)
 
-
-def hour_float_to_hour_minute(hour):
-    base = datetime.strptime("00:00", "%H:%M")
-    result = base + timedelta(hours=hour)
-    return result.strftime("%I:%M %p")
+    def delete_channel(self, channel: Channel):
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True)
+            context = browser.new_context()
+            page = context.new_page()
+            page.goto(f"{self.url}/channels")
+            page.get_by_role(
+                "row",
+                name=re.compile(rf"\d+\s+{channel['name']}", re.IGNORECASE)
+            ).get_by_role("button").nth(1).click()
+            time.sleep(1)
+            page.get_by_role("button", name="Delete").click()
+            time.sleep(1)
 
 
 def ensure_base_directories():
@@ -493,19 +498,24 @@ if __name__ == '__main__':
     write_log("ensuring main directories existences")
     ensure_base_directories()
     write_log("starting creating channels")
-    generate_catalog = GridGenerator().generate_catalog("c1", catalog_template="demo2")
+    generate_catalog = GridGenerator().generate_catalog("c1", catalog_template="demo4")
     write_log(f"Found {len(generate_catalog['channels'])} channel(s)")
-    i = 0
+    write_log(f"Channels configuration")
+    write_log(f"-----")
     for catalog_channel in generate_catalog['channels']:
-        write_log(f"{catalog_channel['name']} - Initialisation", True)
+        print_channel_full_description(channel=catalog_channel)
+        write_log("***")
+        write_log("Initialisation")
+        write_log("Generating playout yml...")
         PlayoutGenerator(catalog_channel).generate_playout()
-        write_log(f"{catalog_channel['name']} - Complete", True, True)
+        write_log("Ersatz configuration")
         try:
             ErsatzTvApi().configura_channel(catalog_channel)
         except Exception as e:
             print(str(e))
-        else:
-            print(catalog_channel['name'], "ok")
-        i += 1
-        if i  > 0:
-            exit()
+        # try:
+        #     ErsatzTvApi().delete_channel(catalog_channel)
+        # except Exception:
+        #     pass
+        write_log("Complete")
+        write_log(f"-----")
