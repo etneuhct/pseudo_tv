@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  pseudo-tv:
+    build: .
+    volumes:
+      - ersatztv-playout:/usr/src/app/output
+    env_file:
+      - .env
+
+volumes:
+  ersatztv-playout:
+    driver: local
+    driver_opts:
+      type: cifs
+      device: ${SMB_DEVICE}
+      o: ${SMB_OPTION}
+
+

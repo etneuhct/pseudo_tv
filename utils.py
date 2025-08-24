@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 from enum import Enum
 
 from data_types import CategoryCriteria
@@ -13,6 +14,7 @@ def serialize_enum_keys(obj):
     else:
         return obj
 
+
 def deserialize_enum_keys(obj):
     if isinstance(obj, dict):
         new_obj = {}
@@ -27,3 +29,9 @@ def deserialize_enum_keys(obj):
         return [deserialize_enum_keys(i) for i in obj]
     else:
         return obj
+
+
+def hour_float_to_hour_minute(hour):
+    base = datetime.strptime("00:00", "%H:%M")
+    result = base + timedelta(hours=hour)
+    return result.strftime("%I:%M %p")
